@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+void  compare(int* a,int len);
+int maxm(int* a, int len);
+int main()
+{
+	int n = 0;
+	printf("输入要排序几个数,输入一个数字后回车");
+	scanf("%d", &n);
+	int* a = (int*)malloc(n * sizeof(int));
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &a[i]);
+	}
+	compare(a,n);
+	printf("顺序排列为");
+	for (int cnt = 0;cnt <n;cnt++ )
+	{
+		printf("%d ", a[cnt]);
+	}
+	free(a);
+	return 0;
+}
+int maxm (int* a, int lenn)
+{
+	//得出数组中的最大值
+	int maxn = a[0];
+	int maxnumber = 0;
+	for (int i = 0; i < lenn;i++) {
+		if (a[i] > maxn) {
+			maxn = a[i];
+			maxnumber = i;
+		}
+	}
+	return maxnumber;
+}void  compare(int* a,int len) 
+{
+	int lenn = len;
+	for (int cnt = 0 ; cnt < len;cnt++ ) {
+		int maxnumber = maxm(a, lenn);
+		lenn--;
+		//swap
+		int swap = a[maxnumber];
+		a[maxnumber] = a[lenn];
+		a[lenn] = swap;
+	}
+}
